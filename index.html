@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chai aur Python - Interactive Learning Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="light-mode">
+    <header class="app-header">
+        <div class="header-left">
+            <button id="sidebar-toggle" class="icon-btn"><i class="fas fa-bars"></i></button>
+            <div class="logo">
+                <i class="fas fa-mug-hot"></i> <span>Chai aur Python Hub</span>
+            </div>
+        </div>
+        <div class="header-center">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="search-input" placeholder="Search concepts, formulas, modules...">
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="progress-container">
+                <span class="progress-label">Course Progress: <span id="progress-percent">0%</span></span>
+                <div class="progress-bar-bg">
+                    <div id="progress-bar-fill" class="progress-bar-fill" style="width: 0%"></div>
+                </div>
+            </div>
+            <button id="theme-toggle" class="icon-btn"><i class="fas fa-moon"></i></button>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">Course Modules</div>
+            <nav class="course-nav" id="course-nav">
+                </nav>
+        </aside>
+
+        <main class="content-pane" id="content-pane">
+            
+            <section id="welcome-view" class="view-section active">
+                <div class="hero-section">
+                    <h1>Complete Python for Beginners Dashboard</h1>
+                    <p>Welcome to the production-ready code interactive study companion matching Hitesh Choudhary's deep-dive Python curriculum. Transition seamlessly from passive listening to active programmatic mastery.</p>
+                    <div class="cta-buttons">
+                        <button class="btn btn-primary" onclick="app.loadFirstLesson()"><i class="fas fa-play"></i> Start Learning</button>
+                    </div>
+                </div>
+
+                <div class="overview-grid">
+                    <div class="card overview-card">
+                        <h3><i class="fas fa-book-open"></i> Architectural Pedigree</h3>
+                        <p>Learn core implementation models of Python over 19 comprehensive chapters. Dive deep under the hood into bytecode conversion pipelines, memory ref counts, and custom structural decorators.</p>
+                    </div>
+                    <div class="card overview-card">
+                        <h3><i class="fas fa-laptop-code"></i> Live Simulated Playgrounds</h3>
+                        <p>Interact with code structures direct from the lessons. Test output values instantly using built-in interactive script sandbox runners.</p>
+                    </div>
+                    <div class="card overview-card">
+                        <h3><i class="fas fa-check-double"></i> Memory Retention Tools</h3>
+                        <p>Validate your knowledge checkpoints iteratively with customized multi-variant quizzes, flashcard memory decks, and multi-tier logical scenarios.</p>
+                    </div>
+                </div>
+
+                <div class="faq-container">
+                    <h2><i class="fas fa-question-circle"></i> Course Frequently Asked Questions</h2>
+                    <div class="faq-item">
+                        <div class="faq-question">What version of Python does this curriculum track?</div>
+                        <div class="faq-answer">This matches Python 3.12+. The guide is explicitly designed around structural backward compatibility guarantees while avoiding breaking architectural patterns.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Why does the program emphasize files over standard browser-only sandboxes?</div>
+                        <div class="faq-answer">Real programmers build core applications inside modular production source files. Testing scripts locally highlights hidden operational mechanisms like bytecode generation states (<code>__pycache__</code>) that basic web execution layers conceal.</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="lesson-view" class="view-section">
+                <div class="lesson-header">
+                    <span id="lesson-module-tag" class="badge">Module</span>
+                    <h2 id="lesson-title">Lesson Title</h2>
+                </div>
+
+                <div class="card lesson-body">
+                    <h3><i class="fas fa-graduation-cap"></i> Core Concepts & Comprehensive Summaries</h3>
+                    <div id="lesson-notes-content" class="notes-wrapper">
+                        </div>
+                </div>
+
+                <div class="playground-layout card" id="playground-interface">
+                    <div class="layout-header">
+                        <span><i class="fas fa-code"></i> Live Interactive Script Simulator</span>
+                        <button class="btn btn-success btn-small" id="run-code-btn"><i class="fas fa-play"></i> Run Script</button>
+                    </div>
+                    <div class="playground-editor-wrapper">
+                        <pre class="editor-header-tabs"><span class="tab active" id="playground-filename">main.py</span></pre>
+                        <textarea id="code-editor-area" spellcheck="false" autocomplete="off"></textarea>
+                    </div>
+                    <div class="playground-terminal-output">
+                        <div class="terminal-header">Interactive Output Console</div>
+                        <pre id="terminal-console-log">Click 'Run Script' to execute the compiler simulator...</pre>
+                    </div>
+                </div>
+
+                <div class="flashcard-section-wrapper card" id="flashcard-block">
+                    <h3><i class="fas fa-clone"></i> Core Concept Flashcards</h3>
+                    <p class="section-desc">Click on the card face below to reveal architectural underlying definitions instantly.</p>
+                    <div class="flashcard-card-box" id="flashcard-trigger">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-front">
+                                <h4 id="flashcard-q">Question Context Text</h4>
+                                <span class="action-hint"><i class="fas fa-sync"></i> Click to Flip</span>
+                            </div>
+                            <div class="flashcard-back">
+                                <p id="flashcard-a">Detailed technical architecture explanation matching core guidelines.</p>
+                                <span class="action-hint"><i class="fas fa-sync"></i> Click to Return</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="active-learning-wrapper grid-2">
+                    <div class="card assignment-card" id="quiz-block">
+                        <h3><i class="fas fa-tasks"></i> Module Knowledge Check</h3>
+                        <div id="quiz-question-container">
+                            <p class="quiz-question-text" id="quiz-q-text">Loading multi-variant dynamic options text context...</p>
+                            <div class="quiz-options-list" id="quiz-options-box">
+                                </div>
+                            <div id="quiz-feedback" class="quiz-feedback-box hidden"></div>
+                        </div>
+                    </div>
+
+                    <div class="card assignment-card" id="assignment-block">
+                        <h3><i class="fas fa-tools"></i> Active Coding Challenge</h3>
+                        <div id="assignment-content">
+                            </div>
+                    </div>
+                </div>
+
+                <div class="lesson-footer-nav">
+                    <button class="btn btn-secondary" id="prev-lesson-btn"><i class="fas fa-arrow-left"></i> Previous Chapter</button>
+                    <button class="btn btn-primary" id="next-lesson-btn">Next Chapter <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
